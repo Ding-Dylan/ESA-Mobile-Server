@@ -1,0 +1,46 @@
+#parse("header.html")
+<div id="main">
+    <div class="container">
+        <ul class="letter-list">
+            #foreach($conversation in $conversations)
+            <li id="conversation-item-10005_622873">
+                <a class="letter-link"
+                   href="/msg/detail?conversationId=$!{conversation.conversation.getId().value()}"></a>
+                <div class="letter-info">
+                    <span class="l-time">$!{conversation.conversation.getGeneratedtimestamp().value().substring(0, 10)} $!{conversation.conversation.getGeneratedtimestamp().value().substring(11, 19)}</span>
+                    <div class="l-operate-bar">
+                        <a href="javascript:void(0);" class="sns-action-del" data-id="10005_622873">
+
+                        </a>
+                        <a href="/msg/detail?conversationId=$!{conversation.conversation.getId().value()}">
+                            From $!{conversation.conversation.getResourcetype().value()}
+                        </a>
+                    </div>
+                </div>
+                <div class="chat-headbox">
+                        <span class="msg-num">
+                            $!{conversation.severity}
+                        </span>
+                    <a class="list-head" href="/user/$!{conversation.user.id}">
+                        <img alt="" src="$!{conversation.severityUrl}">
+                    </a>
+                </div>
+                <div class="letter-detail">
+                    <a title="$!{conversation.user.name}" class="letter-name level-color-1">
+                        $!{conversation.user.name}
+                    </a>
+                    <p class="letter-brief">
+                        <a href="/msg/detail?conversationId=$!{conversation.conversation.conversationId}&sendId=$!{conversation.targetId}">
+                            $!{conversation.conversation.getDescriptionl10n().value()}
+                        </a>
+                    </p>
+                </div>
+            </li>
+            #end
+        </ul>
+
+    </div>
+    <script type="text/javascript">
+    </script>
+</div>
+#parse("footer.html")
